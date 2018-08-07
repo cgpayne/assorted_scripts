@@ -10,7 +10,7 @@
 ##  -h for "help": less the relevant documentation and see script usage
 ##  -l <1|2|3> for "level": sets the template level, where
 ##    '1' = 'basic' (only DESCRIPTION and PARAMETERS + basic Usage example)
-##    '2' = 'intermediate' (DESCRIPTION, PARAMETERS, and standard sections + basic Usage example)
+##    '2' = 'intermediate' (DESCRIPTION, PARAMETERS, and some standard sections + basic Usage example)
 ##    '3' = 'full' (DESCRIPTION, OPTIONS + myUsage example, PARAMETERS, pre-parsing example, and standard sections)
 ## PARAMETERS
 ##  1) scriptname=${1}    # the name of the script to be templated upon
@@ -20,7 +20,7 @@ mysh=$MYSH    # this must point to where this current script lives, along with t
 myname='Charlie Payne'
 thescript='<thescript>'
 thename='<thename>'
-thedate='<thedate>'
+theyear='<theyear>'
 lev1='1'
 lev2='2'
 lev3='3'
@@ -39,7 +39,7 @@ do
       ;;
     l) # -l <1|2|3> for "level": sets the template level
       shlevel=${OPTARG}
-      if [ $shlevel != $lev1 ] || [ $shlevel != $lev2 ] || [ $shlevel != $lev3 ]
+      if [ $shlevel != $lev1 ] && [ $shlevel != $lev2 ] && [ $shlevel != $lev3 ]
       then
         myUsage 3
       fi
@@ -68,12 +68,13 @@ fi
 
 
 
-# copy the specified template, and replace the relevant strings
+# copy the specified template, replace the relevant strings, and remove the backup files (*.bak, necessary for execution on Mac OS X)
 
 cp $mysh/scriptinit_${shlevel}.txt $scriptname
-sed -i "s/${thescript}/${scriptname}/g" $scriptname
-sed -i "s/${thename}/${myname}/g" $scriptname
-sed -i "s/${thedate}/${copyyear}/g" $scriptname
+sed -i'.bak' "s/${thescript}/${scriptname}/g" $scriptname; rm -f $scriptname.bak
+sed -i'.bak' "s/${thename}/${myname}/g" $scriptname; rm -f $scriptname.bak
+sed -i'.bak' "s/${theyear}/${copyyear}/g" $scriptname; rm -f $scriptname.bak
+chmod 755 $scriptname
 
 
 

@@ -19,8 +19,7 @@ if [ -z "$@" ]
 then
   echo 'ERRROR 0: god is empty, just like me...'
   exit 1
-fi
-if [ ${1} = '-u' ]
+elif [ ${1} = '-u' ]
 then
   echo "Usage: ${0} <firstparam> <secondparam>" 1>&2
   exit 1

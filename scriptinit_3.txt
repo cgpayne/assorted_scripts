@@ -36,7 +36,7 @@ do
       ;;
     e) # -e <on|off> for "example": <insert description>
       somearg=${OPTARG}
-      if [ $somearg != $eval1 ] || [ $somearg != $eval2 ]
+      if [ $somearg != $eval1 ] && [ $somearg != $eval2 ]
       then
         myUsage 3
       fi
@@ -62,6 +62,18 @@ fi
 
 
 # pre-check
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo "firstparam     = $firstparam"
+echo "secondparam    = $secondparam"
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo 'is this input acceptable? (Y/N)'
+read incheck
+echo
+if [ $incheck = 'n' ] || [ $incheck = 'N' ]
+then
+  echo 'exiting...'
+  exit 1
+fi
 if ! [[ $secondparam =~ ^[0-9]+$ ]] || [ $secondparam -eq 0 ]
 then
   echo 'ERROR 1111: secondparam is not a positive integer!'

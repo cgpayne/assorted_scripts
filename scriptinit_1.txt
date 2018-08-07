@@ -14,7 +14,7 @@ somevalue='<insert value>'    # <insert description, this is used below>
 
 
 # parse the input
-if [ -z "$@" ]
+if [ -z ${1} ]
 then
   echo 'ERRROR 0: god is empty, just like me...'
   exit 1

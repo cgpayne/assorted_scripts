@@ -1,0 +1,87 @@
+#!/bin/bash
+##  <thescript>
+##  by: <thename>
+##  copyright (c): <theyear>
+## DESCRIPTION
+##  <insert description...>
+##  <...insert more description>
+## OPTIONS
+##  -u for "usage": see script usage
+##  -h for "help": less the relevant documentation and see script usage
+##  -e <on|off> for "example": <insert description>, where
+##    'on' = <insert description, this is used below>
+##    'off' = <insert description, this is used below>
+## PARAMETERS
+##  1) firstparam=${1}     # <insert description, this is used below>
+##  2) secondparam=${2}    # <insert description, this is used below>
+## STAGES
+##  stage 0 = <insert description>
+myUsage(){ echo "Usage ${1}: ${0} [-u for usage] [-h for help] [-e <example>] <firstparam> <secondparam>" 1>&2; exit 1; }
+somevalue='<insert value>'    # <insert description, this is used below>
+mydir=$MYDIR                  # <insert description, this is used below>
+eval1='on'
+eval2='off'
+
+
+
+# pre-parse the script parameters
+while getopts ":uhe:" myopt # filter the script options
+do
+  case "${myopt}" in
+    u) # -u for "usage": see script usage
+      myUsage 1;;
+    h) # -h for "help": less the relevant documentation and see script usage
+      sed -n '2,18p; 19q' $mydir/<thescript> | command less
+      myUsage 2
+      ;;
+    e) # -e <on|off> for "example": <insert description>
+      somearg=${OPTARG}
+      if [ $somearg != $eval1 ] || [ $somearg != $eval2 ]
+      then
+        myUsage 3
+      fi
+      ;;
+    \?)
+      myUsage 4;;
+  esac
+done
+shift $(($OPTIND-1))
+if [ ${#} -ne 2 ] # check that the right number of script paramters have been filled
+then
+  myUsage 5
+fi
+firstparam=${1}     # <insert description, this is used below>
+secondparam=${2}    # <insert description, this is used below>
+
+
+# parse the input
+if [ $firstparam != $somevalue ]
+then
+  firstparam="${firstparam}_${somevalue}"
+fi
+
+
+# pre-check
+if ! [[ $secondparam =~ ^[0-9]+$ ]] || [ $secondparam -eq 0 ]
+then
+  echo 'ERROR 1111: secondparam is not a positive integer!'
+  echo "secondparam = $secondparam"
+  echo 'exiting...'
+  exit 1
+fi
+
+
+# function prototype: <insert description>
+somefunction(){
+  <insert code>
+}
+
+
+
+#----------------------------------- STAGE 0 -----------------------------------
+
+<insert code>
+
+
+
+## FIN

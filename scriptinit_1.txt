@@ -17,7 +17,7 @@ somevalue='<insert>'    # <insert description, this is used below>
 # parse the input
 if [ -z ${1} ]
 then
-  echo 'ERRROR 0: god is empty, just like me...'
+  echo 'ERRROR 0: god is empty, just like me...' 1>&2
   exit 1
 elif [ ${1} = '-u' ]
 then

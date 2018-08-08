@@ -18,18 +18,20 @@ somevalue='<insert>'    # <insert description, this is used below>
 # function prototype: <insert description>
 somefunction1(){
   # <insert code>
+  echo $output
 }
 
 # function prototype: <insert description>
 somefunction2(){
   # <insert code>
+  echo $output
 }
 
 
 # parse the input
 if [ -z ${1} ]
 then
-  echo 'ERRROR 0: god is empty, just like me...'
+  echo 'ERRROR 0: god is empty, just like me...' 1>&2
   exit 1
 elif [ ${1} = '-u' ]
 then
@@ -45,9 +47,9 @@ fi
 # pre-check
 if ! [[ $secondparam =~ ^[0-9]+$ ]] || [ $secondparam -eq 0 ]
 then
-  echo 'ERROR 1111: secondparam is not a positive integer!'
-  echo "secondparam = $secondparam"
-  echo 'exiting...'
+  echo 'ERROR 1111: secondparam is not a positive integer!' 1>&2
+  echo "secondparam = $secondparam" 1>&2
+  echo 'exiting...' 1>&2
   exit 1
 fi
 

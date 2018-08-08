@@ -57,7 +57,7 @@ then
   exit 1
 elif [ ${1} = '-u' ]
 then
-  echo "Usage: ${0} <timeI> <timeF>" 1>&2
+  echo "Usage: `basename ${0}` <timeI> <timeF>" 1>&2
   exit 1
 fi
 DDDI=${timeI%%:*} # this gets DDD

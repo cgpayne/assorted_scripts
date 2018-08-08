@@ -16,7 +16,7 @@
 ## PARAMETERS
 ##  1) scriptname=${1}    # the name of the script to be templated upon
 ##  2) copyyear=${2}      # (most likely) the current year (for the copyright)
-myUsage(){ echo "Usage ${1}: ${0} [-u for usage] [-h for help] [-l <1|2|3>] <scriptname> <copyyear>" 1>&2; exit 1; }
+myUsage(){ echo "Usage ${1}: `basename ${0}` [-u for usage] [-h for help] [-l <1|2|3>] <scriptname> <copyyear>" 1>&2; exit 1; }
 mysh=$MYSH    # this must point to where this current script lives, along with the scriptinit_*.txt files
 myname='Charlie Payne'
 thescript='<thescript>'

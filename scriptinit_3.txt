@@ -17,7 +17,7 @@
 ##  2) secondparam=${2}    # <insert description, this is used below>
 ## STAGES
 ##  stage 0 = <insert description>
-myUsage(){ echo "Usage ${1}: ${0} [-u for usage] [-h for help] [-e <example>] <firstparam> <secondparam>" 1>&2; exit 1; }
+myUsage(){ echo "Usage ${1}: `basename ${0}` [-u for usage] [-h for help] [-e <example>] <firstparam> <secondparam>" 1>&2; exit 1; }
 somevalue='<insert>'    # <insert description, this is used below>
 mydir=$MYDIR            # <insert description, this is used below>
 eval1='on'

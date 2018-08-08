@@ -1,7 +1,8 @@
 #!/bin/bash
 ##  <thescript>
-##  by: <thename>
-##  copyright (c): <theyear>
+##  By: <thename>
+##  Copyright (C): <theyear>
+##  License: see LICENSE (GNU GPL v3)
 ## DESCRIPTION
 ##  <insert description...>
 ##  <...insert more description>

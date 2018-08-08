@@ -1,7 +1,8 @@
 #!/bin/bash
 ##  scriptinit.sh
-##  by: Charlie Payne
-##  copyright (c): 2018
+##  By: Charlie Payne
+##  Copyright (C): 2018
+##  License: see LICENSE (GNU GPL v3)
 ## DESCRIPTION
 ##  this script will initialize a template for a script
 ##  I love Godelian loops!
@@ -34,7 +35,7 @@ do
     u) # -u for "usage": see script usage
       myUsage 1;;
     h) # -h for "help": less the relevant documentation and see script usage
-      sed -n '2,17p; 18q' $mysh/scriptinit.sh | command less
+      sed -n '2,18p; 19q' $mysh/scriptinit.sh | command less
       myUsage 2
       ;;
     l) # -l <1|2|3> for "level": sets the template level

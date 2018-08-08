@@ -10,8 +10,19 @@
 ##  2) secondparam=${2}    # <insert description, this is used below>
 firstparam=${1}     # <insert description, this is used below>
 secondparam=${2}    # <insert description, this is used below>
-somevalue='<insert value>'    # <insert description, this is used below>
+somevalue='<insert>'    # <insert description, this is used below>
 
+
+
+# function prototype: <insert description>
+somefunction1(){
+  # <insert code>
+}
+
+# function prototype: <insert description>
+somefunction2(){
+  # <insert code>
+}
 
 
 # parse the input
@@ -40,14 +51,8 @@ then
 fi
 
 
-# function prototype: <insert description>
-somefunction(){
-  <insert code>
-}
 
-
-
-<insert code>
+# <insert code>
 
 
 

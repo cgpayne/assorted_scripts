@@ -10,7 +10,7 @@
 ##  2) secondparam=${2}    # <insert description, this is used below>
 firstparam=${1}     # <insert description, this is used below>
 secondparam=${2}    # <insert description, this is used below>
-somevalue='<insert value>'    # <insert description, this is used below>
+somevalue='<insert>'    # <insert description, this is used below>
 
 
 # parse the input
@@ -33,7 +33,7 @@ then
 fi
 
 
-<insert code>
+# <insert code>
 
 
 ## FIN

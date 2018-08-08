@@ -17,11 +17,22 @@
 ## STAGES
 ##  stage 0 = <insert description>
 myUsage(){ echo "Usage ${1}: ${0} [-u for usage] [-h for help] [-e <example>] <firstparam> <secondparam>" 1>&2; exit 1; }
-somevalue='<insert value>'    # <insert description, this is used below>
-mydir=$MYDIR                  # <insert description, this is used below>
+somevalue='<insert>'    # <insert description, this is used below>
+mydir=$MYDIR            # <insert description, this is used below>
 eval1='on'
 eval2='off'
 
+
+
+# function prototype: <insert description>
+somefunction1(){
+  # <insert code>
+}
+
+# function prototype: <insert description>
+somefunction2(){
+  # <insert code>
+}
 
 
 # pre-parse the script parameters
@@ -83,16 +94,10 @@ then
 fi
 
 
-# function prototype: <insert description>
-somefunction(){
-  <insert code>
-}
-
-
 
 #----------------------------------- STAGE 0 -----------------------------------
 
-<insert code>
+# <insert code>
 
 
 

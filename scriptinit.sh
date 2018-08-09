@@ -10,8 +10,8 @@
 ##  -u for "usage": see script usage
 ##  -h for "help": less the relevant documentation and see script usage
 ##  -l <1|2|3> for "level": sets the template level, where
-##    '1' = 'basic' (only DESCRIPTION and PARAMETERS + basic Usage example)
-##    '2' = 'intermediate' (DESCRIPTION, PARAMETERS, and some standard sections + basic Usage example)
+##    '1' = 'basic' (only DESCRIPTION and PARAMETERS + myUsage example)
+##    '2' = 'intermediate' (DESCRIPTION, PARAMETERS + myUsage example, and some standard sections)
 ##    '3' = 'full' (DESCRIPTION, OPTIONS + myUsage example, PARAMETERS, pre-parsing example, and standard sections)
 ## PARAMETERS
 ##  1) scriptname=${1}    # the name of the script to be templated upon
@@ -30,6 +30,11 @@ lev3='3'
 
 
 # pre-parse the script parameters
+if [ -z ${1} ]
+then
+  erro 'ERROR 0: god is empty, just like me...'
+  exit 1
+fi
 while getopts ":uhl:" myopt # filter the script options
 do
   case "${myopt}" in

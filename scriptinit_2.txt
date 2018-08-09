@@ -10,6 +10,7 @@
 ##  1) firstparam=${1}     # <insert description, this is used below>
 ##  2) secondparam=${2}    # <insert description, this is used below>
 erro(){ echo "$@" 1>&2; }
+myUsage(){ erro "Usage ${1}: `basename ${0}` [-u for usage] <firstparam> <secondparam>"; exit 1; }
 firstparam=${1}     # <insert description, this is used below>
 secondparam=${2}    # <insert description, this is used below>
 somevalue='<insert>'    # <insert description, this is used below>
@@ -32,12 +33,14 @@ somefunction2(){
 # parse the input
 if [ -z ${1} ]
 then
-  erro 'ERRROR 0: god is empty, just like me...'
+  erro 'ERROR 0: god is empty, just like me...'
   exit 1
 elif [ ${1} = '-u' ]
 then
-  erro "Usage: `basename ${0}` <firstparam> <secondparam>"
-  exit 1
+  myUsage 1
+elif [ ${#} -ne 2 ] # check that the right number of script paramters have been filled
+then
+  myUsage 2
 fi
 if [ $firstparam != $somevalue ]
 then

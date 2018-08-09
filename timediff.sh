@@ -13,6 +13,7 @@
 ##  1) timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 ##  2) timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
 erro(){ echo "$@" 1>&2; }
+myUsage(){ erro "Usage ${1}: `basename ${0}` [-u for usage] <DDD:HH:MM:SS> <DDD:HH:MM:SS>"; exit 1; }
 timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
 somevalue='<insert value>'    # <insert description, this is used below>
@@ -54,12 +55,18 @@ rezero(){
 # parse the input
 if [ -z ${1} ]
 then
-  erro 'ERRROR 0: god is empty, just like me...'
+  erro 'ERROR 0: god is empty, just like me...'
   exit 1
 elif [ ${1} = '-u' ]
 then
-  erro "Usage: `basename ${0}` <timeI> <timeF>"
-  exit 1
+  myUsage 1
+elif [ ${#} -ne 2 ] # check that the right number of script paramters have been filled
+then
+  myUsage 2
+fi
+if [[ $timeI != ???:??:??:?? ]] || [[ $timeF != ???:??:??:?? ]]
+then
+  myUsage 3
 fi
 DDDI=${timeI%%:*} # this gets DDD
 HHI=${timeI#*:} # this gets HH:MM:SS

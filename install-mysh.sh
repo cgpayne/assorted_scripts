@@ -20,6 +20,9 @@ then
 elif [ ${1} = '-u' ]
 then
   myUsage
+elif [ ${1:0:1} = '-' ]
+then
+  myUsage " (option -${1:1} not recognized)"
 elif [ ${#} -ge 2 ] # check that the right number of script paramters have been filled
 then
   myUsage ' (incorrect number of script parameters)'

@@ -10,31 +10,34 @@
 ##  1) firstparam=${1}     # <insert description, this is used below>
 ##  2) secondparam=${2}    # <insert description, this is used below>
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "Usage ${1}: `basename ${0}` [-u for usage] <firstparam> <secondparam>"; exit 1; }
+myUsage(){ erro "Usage${1}: `basename ${0}` [-u for usage] <firstparam> <secondparam>"; exit 1; }
 firstparam=${1}     # <insert description, this is used below>
 secondparam=${2}    # <insert description, this is used below>
 somevalue='<insert>'    # <insert description, this is used below>
 
 
-# parse the input
+# parse the input / pre-check
 if [ -z ${1} ]
 then
   erro 'ERROR 0: god is empty, just like me...'
   exit 1
 elif [ ${1} = '-u' ]
 then
-  myUsage 1
+  myUsage
 elif [ ${#} -ne 2 ] # check that the right number of script paramters have been filled
 then
-  myUsage 2
+  myUsage ' (incorrect number of script parameters)'
 fi
 if [ $firstparam != $somevalue ]
 then
   firstparam="${firstparam}_${somevalue}"
 fi
-if [ $secondparam != $somevalue ]
+if ! [[ $secondparam =~ ^[0-9]+$ ]] || [ $secondparam -eq 0 ]
 then
-  secondparam="${secondparam}_${somevalue}"
+  erro 'ERROR 1111: secondparam is not a positive integer!'
+  erro "secondparam = $secondparam"
+  erro 'exiting...'
+  exit 1
 fi
 
 

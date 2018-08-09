@@ -18,7 +18,7 @@
 ## STAGES
 ##  stage 0 = <insert description>
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "Usage ${1}: `basename ${0}` [-u for usage] [-h for help] [-e <example>] <firstparam> <secondparam>"; exit 1; }
+myUsage(){ erro "Usage${1}: `basename ${0}` [-u for usage] [-h for help] [-e <example>] <firstparam> <secondparam>"; exit 1; }
 somevalue='<insert>'    # <insert description, this is used below>
 mydir=$MYDIR            # <insert description, this is used below>
 eval1='on'
@@ -49,26 +49,26 @@ while getopts ":uhe:" myopt # filter the script options
 do
   case "${myopt}" in
     u) # -u for "usage": see script usage
-      myUsage 1;;
+      myUsage;;
     h) # -h for "help": less the relevant documentation and see script usage
       sed -n '2,19p; 20q' $mydir/<thescript> | command less
-      myUsage 2
+      myUsage
       ;;
     e) # -e <on|off> for "example": <insert description>
       somearg=${OPTARG}
       if [ $somearg != $eval1 ] && [ $somearg != $eval2 ]
       then
-        myUsage 3
+        myUsage ' (option -e is out of bounds)'
       fi
       ;;
     \?)
-      myUsage 4;;
+      myUsage " (option -${OPTARG} not recognized)";;
   esac
 done
 shift $(($OPTIND-1))
 if [ ${#} -ne 2 ] # check that the right number of script paramters have been filled
 then
-  myUsage 5
+  myUsage ' (incorrect number of script parameters)'
 fi
 firstparam=${1}     # <insert description, this is used below>
 secondparam=${2}    # <insert description, this is used below>

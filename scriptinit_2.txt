@@ -9,6 +9,7 @@
 ## PARAMETERS
 ##  1) firstparam=${1}     # <insert description, this is used below>
 ##  2) secondparam=${2}    # <insert description, this is used below>
+erro(){ echo "$@" 1>&2; }
 firstparam=${1}     # <insert description, this is used below>
 secondparam=${2}    # <insert description, this is used below>
 somevalue='<insert>'    # <insert description, this is used below>
@@ -31,11 +32,11 @@ somefunction2(){
 # parse the input
 if [ -z ${1} ]
 then
-  echo 'ERRROR 0: god is empty, just like me...' 1>&2
+  erro 'ERRROR 0: god is empty, just like me...'
   exit 1
 elif [ ${1} = '-u' ]
 then
-  echo "Usage: `basename ${0}` <firstparam> <secondparam>" 1>&2
+  erro "Usage: `basename ${0}` <firstparam> <secondparam>"
   exit 1
 fi
 if [ $firstparam != $somevalue ]
@@ -47,9 +48,9 @@ fi
 # pre-check
 if ! [[ $secondparam =~ ^[0-9]+$ ]] || [ $secondparam -eq 0 ]
 then
-  echo 'ERROR 1111: secondparam is not a positive integer!' 1>&2
-  echo "secondparam = $secondparam" 1>&2
-  echo 'exiting...' 1>&2
+  erro 'ERROR 1111: secondparam is not a positive integer!'
+  erro "secondparam = $secondparam"
+  erro 'exiting...'
   exit 1
 fi
 

@@ -12,6 +12,7 @@
 ## PARAMETERS
 ##  1) timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 ##  2) timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
+erro(){ echo "$@" 1>&2; }
 timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
 somevalue='<insert value>'    # <insert description, this is used below>
@@ -53,11 +54,11 @@ rezero(){
 # parse the input
 if [ -z ${1} ]
 then
-  echo 'ERRROR 0: god is empty, just like me...' 1>&2
+  erro 'ERRROR 0: god is empty, just like me...'
   exit 1
 elif [ ${1} = '-u' ]
 then
-  echo "Usage: `basename ${0}` <timeI> <timeF>" 1>&2
+  erro "Usage: `basename ${0}` <timeI> <timeF>"
   exit 1
 fi
 DDDI=${timeI%%:*} # this gets DDD
@@ -94,58 +95,58 @@ fi
 # pre-check
 if [ $DDDI -lt 1 ] || [ 366 -lt $DDDI ]
 then
-  echo 'ERROR: timeI is out of range!' 1>&2
-  echo "DDDI = $DDDI" 1>&2
-  echo 'exiting...' 1>&2
-  exit 1 1>&2
+  erro 'ERROR: timeI is out of range!'
+  erro "DDDI = $DDDI"
+  erro 'exiting...'
+  exit 1
 fi
 if [ $HHI -lt 0 ] || [ 23 -lt $HHI ]
 then
-  echo 'ERROR: timeI is out of range!' 1>&2
-  echo "HHI = $HHI" 1>&2
-  echo 'exiting...' 1>&2
+  erro 'ERROR: timeI is out of range!'
+  erro "HHI = $HHI"
+  erro 'exiting...'
   exit 1
 fi
 if [ $MMI -lt 0 ] || [ 59 -lt $MMI ]
 then
-  echo 'ERROR: timeI is out of range!' 1>&2
-  echo "MMI = $MMI" 1>&2
-  echo 'exiting...' 1>&2
+  erro 'ERROR: timeI is out of range!'
+  erro "MMI = $MMI"
+  erro 'exiting...'
   exit 1
 fi
 if [ $SSI -lt 0 ] || [ 59 -lt $SSI ]
 then
-  echo 'ERROR: timeI is out of range!' 1>&2
-  echo "SSI = $SSI" 1>&2
-  echo 'exiting...' 1>&2
+  erro 'ERROR: timeI is out of range!'
+  erro "SSI = $SSI"
+  erro 'exiting...'
   exit 1
 fi
 if [ $DDDF -lt 1 ] || [ 366 -lt $DDDF ]
 then
-  echo 'ERROR: timeF is out of range!' 1>&2
-  echo "DDDF = $DDDF" 1>&2
-  echo 'exiting...' 1>&2
+  erro 'ERROR: timeF is out of range!'
+  erro "DDDF = $DDDF"
+  erro 'exiting...'
   exit 1
 fi
 if [ $HHF -lt 0 ] || [ 23 -lt $HHF ]
 then
-  echo 'ERROR: timeF is out of range!' 1>&2
-  echo "HHF= $HHF" 1>&2
-  echo 'exiting...' 1>&2
+  erro 'ERROR: timeF is out of range!'
+  erro "HHF= $HHF"
+  erro 'exiting...'
   exit 1
 fi
 if [ $MMF -lt 0 ] || [ 59 -lt $MMF ]
 then
-  echo 'ERROR: timeFis out of range!' 1>&2
-  echo "MMF = $MMF" 1>&2
-  echo 'exiting...' 1>&2
+  erro 'ERROR: timeFis out of range!'
+  erro "MMF = $MMF"
+  erro 'exiting...'
   exit 1
 fi
 if [ $SSF -lt 0 ] || [ 59 -lt $SSF ]
 then
-  echo 'ERROR: timeF is out of range!' 1>&2
-  echo "SSF = $SSF" 1>&2
-  echo 'exiting...' 1>&2
+  erro 'ERROR: timeF is out of range!'
+  erro "SSF = $SSF"
+  erro 'exiting...'
   exit 1
 fi
 

@@ -17,7 +17,8 @@
 ##  2) secondparam=${2}    # <insert description, this is used below>
 ## STAGES
 ##  stage 0 = <insert description>
-myUsage(){ echo "Usage ${1}: `basename ${0}` [-u for usage] [-h for help] [-e <example>] <firstparam> <secondparam>" 1>&2; exit 1; }
+erro(){ echo "$@" 1>&2; }
+myUsage(){ erro "Usage ${1}: `basename ${0}` [-u for usage] [-h for help] [-e <example>] <firstparam> <secondparam>"; exit 1; }
 somevalue='<insert>'    # <insert description, this is used below>
 mydir=$MYDIR            # <insert description, this is used below>
 eval1='on'
@@ -76,23 +77,23 @@ fi
 
 
 # pre-check
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-echo "firstparam     = $firstparam"
-echo "secondparam    = $secondparam"
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-echo 'is this input acceptable? (Y/N)'
+erro '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+erro "firstparam     = $firstparam"
+erro "secondparam    = $secondparam"
+erro '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+erro 'is this input acceptable? (Y/N)'
 read incheck
-echo
+erro
 if [ $incheck = 'n' ] || [ $incheck = 'N' ]
 then
-  echo 'exiting...'
+  erro 'exiting...'
   exit 1
 fi
 if ! [[ $secondparam =~ ^[0-9]+$ ]] || [ $secondparam -eq 0 ]
 then
-  echo 'ERROR 1111: secondparam is not a positive integer!' 1>&2
-  echo "secondparam = $secondparam" 1>&2
-  echo 'exiting...' 1>&2
+  erro 'ERROR 1111: secondparam is not a positive integer!'
+  erro "secondparam = $secondparam"
+  erro 'exiting...'
   exit 1
 fi
 

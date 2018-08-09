@@ -16,7 +16,8 @@
 ## PARAMETERS
 ##  1) scriptname=${1}    # the name of the script to be templated upon
 ##  2) copyyear=${2}      # (most likely) the current year (for the copyright)
-myUsage(){ echo "Usage ${1}: `basename ${0}` [-u for usage] [-h for help] [-l <1|2|3>] <scriptname> <copyyear>" 1>&2; exit 1; }
+erro(){ echo "$@" 1>&2; }
+myUsage(){ erro "Usage ${1}: `basename ${0}` [-u for usage] [-h for help] [-l <1|2|3>] <scriptname> <copyyear>"; exit 1; }
 mysh=$MYSH    # this must point to where this current script lives, along with the scriptinit_*.txt files
 myname='Charlie Payne'
 thescript='<thescript>'
@@ -61,9 +62,9 @@ copyyear=${2}      # the current year (for the copyright)
 # pre-check
 if ! [[ $copyyear =~ ^[0-9]+$ ]] || [ $copyyear -eq 0 ]
 then
-  echo 'ERROR 1111: copyyear is not a positive integer!' 1>&2
-  echo "copyyear = $copyyear" 1>&2
-  echo 'exiting...' 1>&2
+  erro 'ERROR 1111: copyyear is not a positive integer!'
+  erro "copyyear = $copyyear"
+  erro 'exiting...'
   exit 1
 fi
 

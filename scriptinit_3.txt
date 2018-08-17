@@ -45,6 +45,7 @@ then
   erro 'ERROR 0: god is empty, just like me...'
   exit 1
 fi
+somearg='<insert>' # <insert description like: this gets turned on by option -e>
 while getopts ":uhe:" myopt # filter the script options
 do
   case "${myopt}" in

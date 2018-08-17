@@ -12,13 +12,16 @@
 ## OPTIONS
 ##  -u for "usage": see script usage
 ##  -h for "help": less the relevant documentation and see script usage
-##  -s for "seconds": also output the difference in total seconds
+##  -s for "seconds also": output the difference in total seconds also
 ##  -S for "seconds only": output the difference in total seconds only
 ## PARAMETERS
 ##  1) timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 ##  2) timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
+BOLD=$(tput bold)      # get the bold text enviornment
+UNDERLINE=$(tput smul) # get the underline text environment
+RESET=$(tput sgr0)     # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "Usage${1}: `basename ${0}` [-u for usage] [-h for help] [-s for seconds] [-S for seconds only] <DDD:HH:MM:SS> <DDD:HH:MM:SS>"; exit 1; }
+myUsage(){ erro "Usage${BOLD}${1}${RESET}: `basename ${0}` [-u for usage] [-h for help] [-s for seconds also] [-S for seconds only] <DDD:HH:MM:SS> <DDD:HH:MM:SS>"; exit 1; }
 timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
 mysh=$MYSH    # this must point to where this current script lives
@@ -76,7 +79,7 @@ do
       sed -n '2,22p; 23q' $mysh/timediff.sh | command less
       myUsage
       ;;
-    s) # -s for "seconds": also output the difference in total seconds
+    s) # -s for "seconds also": output the difference in total seconds also
       Sswitch=$sone;;
     S) # -S for "seconds only": output the difference in total seconds only
       Sswitch=$stwo;;

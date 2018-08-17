@@ -14,15 +14,18 @@
 ##    '2' = 'intermediate' (DESCRIPTION, PARAMETERS + myUsage example, and some standard sections)
 ##    '3' = 'full' (DESCRIPTION, OPTIONS + myUsage example, PARAMETERS, pre-parsing example, and standard sections)
 ## PARAMETERS
-##  1) scriptname=${1}    # the name of the script to be templated upon
+##  1) scriptname=${1}    # the name of the script to be templated upon - don't forget the .sh extension
 ##  2) copyyear=${2}      # (most likely) the current year (for the copyright)
+BOLD=$(tput bold)      # get the bold text enviornment
+UNDERLINE=$(tput smul) # get the underline text environment
+RESET=$(tput sgr0)     # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "Usage${1}: `basename ${0}` [-u for usage] [-h for help] [-l <1|2|3>] <scriptname> <copyyear>"; exit 1; }
+myUsage(){ erro "Usage${BOLD}${1}${RESET}: `basename ${0}` [-u for usage] [-h for help] [-l <1|2|3>] <${UNDERLINE}scriptname${RESET}> <${UNDERLINE}copyyear${RESET}>"; exit 1; }
 mysh=$MYSH    # this must point to where this current script lives, along with the scriptinit_*.txt files
-myname='Charlie Payne'
-thescript='<thescript>'
-thename='<thename>'
-theyear='<theyear>'
+myname='Charlie Payne'     # this is my name, le derp!
+thescript='<thescript>'    # we'll replace this string (in scriptinit_*.sh) with $scriptname (in $scriptname)
+thename='<thename>'        # " " " " " " " " $myname " "
+theyear='<theyear>'        # " " " " " " " " $copyyear " "
 lev1='1'
 lev2='2'
 lev3='3'
@@ -60,8 +63,8 @@ if [ ${#} -ne 2 ] # check that the right number of script paramters have been fi
 then
   myUsage ' (incorrect number of script parameters)'
 fi
-scriptname=${1}    # the name of the script to be templated upon
-copyyear=${2}      # the current year (for the copyright)
+scriptname=${1}    # the name of the script to be templated upon - don't forget the .sh extension
+copyyear=${2}      # (most likely) the current year (for the copyright)
 
 
 # pre-check

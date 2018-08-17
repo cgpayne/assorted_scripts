@@ -17,8 +17,11 @@
 ##  2) secondparam=${2}    # <insert description, this is used below>
 ## STAGES
 ##  stage 0 = <insert description>
+BOLD=$(tput bold)      # get the bold text enviornment
+UNDERLINE=$(tput smul) # get the underline text environment
+RESET=$(tput sgr0)     # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "Usage${1}: `basename ${0}` [-u for usage] [-h for help] [-e <example>] <firstparam> <secondparam>"; exit 1; }
+myUsage(){ erro "Usage${BOLD}${1}${RESET}: `basename ${0}` [-u for usage] [-h for help] [-e <on|off>] <${UNDERLINE}firstparam${RESET}> <${UNDERLINE}secondparam${RESET}>"; exit 1; }
 somevalue='<insert>'    # <insert description, this is used below>
 mydir=$MYDIR            # <insert description, this is used below>
 eval1='on'

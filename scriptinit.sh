@@ -68,7 +68,7 @@ copyyear=${2}      # (most likely) the current year (for the copyright)
 
 
 # pre-check
-if ! [[ $copyyear =~ ^[0-9]+$ ]] || [ $copyyear -eq 0 ]
+if [[ ! $copyyear =~ ^[0-9]+$ ]] || [ $copyyear -eq 0 ]
 then
   erro 'ERROR 1111: copyyear is not a positive integer!?'
   erro "copyyear = $copyyear"

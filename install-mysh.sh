@@ -31,7 +31,7 @@ elif [ ${#} -ge 2 ] # check that the right number of script paramters have been 
 then
   myUsage ' (incorrect number of script parameters)'
 fi
-if ! [ -d $instdir ]
+if [ ! -d $instdir ]
 then
   erro 'ERROR 0691: instdir is not an existing directory!'
   erro "instdir = $instdir"

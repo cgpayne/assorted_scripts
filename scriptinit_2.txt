@@ -55,7 +55,7 @@ fi
 
 
 # pre-check
-if ! [[ $secondparam =~ ^[0-9]+$ ]] || [ $secondparam -eq 0 ]
+if [[ ! $secondparam =~ ^[0-9]+$ ]] || [ $secondparam -eq 0 ]
 then
   erro 'ERROR 1111: secondparam is not a positive integer!'
   erro "secondparam = $secondparam"

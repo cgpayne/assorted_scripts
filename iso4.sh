@@ -6,7 +6,7 @@
 ## DESCRIPTION
 ##  this will take in a word and output its ISO 4 shortened version
 ##  I will add in more ISO 4 words as I need them (i.e., this is an incomplete dictionary)
-##  if the word is not found, then the script will just output the input
+##  if the word is not found in the dictionary, then the script will just output the input
 ## PARAMETERS
 ##  1) theword=${1}     # a single word
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
@@ -36,10 +36,102 @@ then
 fi
 
 
-# dictionary
-if [ $theword = 'Physics' ]
+# ---- dictionary ----
+# Data
+# Energy
+# High
+# Pure
+# Tables
+if [ $theword = 'the' ] || [ $theword = 'The' ] || [ $theword = 'on' ] || [ $theword = 'in' ] || [ $theword = 'and' ] || [ $theword = 'of' ]
+then
+  theword=''
+elif [ $theword = 'Advances' ]
+then
+  theword='Adv.'
+elif [ $theword = 'Analysis' ]
+then
+  theword='Anal.'
+elif [ $theword = 'Annual' ]
+then
+  theword='Ann.'
+elif [ $theword = 'Applied' ]
+then
+  theword='Appl.'
+elif [ $theword = 'Atomic' ]
+then
+  theword='At.'
+elif [ $theword = 'Chemical' ] || [ $theword = 'Chemistry' ]
+then
+  theword='Chem.'
+elif [ $theword = 'Conference' ] || [ $theword = 'Conferences' ]
+then
+  theword='Conf.'
+elif [ $theword = 'Communications' ]
+then
+  theword='Commun.'
+elif [ $theword = 'Computer' ] || [ $theword = 'Computational' ]
+then
+  theword='Comput.'
+elif [ $theword = 'European' ]
+then
+  theword='Eur.'
+elif [ $theword = 'Experimental' ]
+then
+  theword='Exp.'
+elif [ $theword = 'International' ]
+then
+  theword='Int.'
+elif [ $theword = 'Journal' ]
+then
+  theword='J.'
+elif [ $theword = 'Mathematics' ] || [ $theword = 'Mathematical' ]
+then
+  theword='Math.'
+elif [ $theword = 'Modern' ]
+then
+  theword='Mod.'
+elif [ $theword = 'Nuclear' ]
+then
+  theword='Nuc.'
+elif [ $theword = 'Numerical' ]
+then
+  theword='Numer.'
+elif [ $theword = 'Letters' ]
+then
+  theword='Lett.'
+elif [ $theword = 'Particle' ] || [ $theword = 'Particles' ]
+then
+  theword='Part.'
+elif [ $theword = 'Physics' ] || [ $theword = 'Physical' ] || [ $theword = 'Physica' ]
 then
   theword='Phys.'
+elif [ $theword = 'Proceedings' ]
+then
+  theword='Proc.'
+elif [ $theword = 'Progress' ]
+then
+  theword='Prog.'
+elif [ $theword = 'Reports' ]
+then
+  theword='Rep.'
+elif [ $theword = 'Review' ] || [ $theword = 'Reviews' ]
+then
+  theword='Rev.'
+elif [ $theword = 'Series' ]
+then
+  theword='Ser.'
+elif [ $theword = 'Science' ] || [ $theword = 'Sciences' ]
+then
+  theword='Sci.'
+elif [ $theword = 'Scripta' ]
+then
+  theword='Scr.'
+elif [ $theword = 'Supplements' ]
+then
+  theword='Suppl.'
+elif [ $theword = 'Theoretical' ]
+then
+  theword='Theor.'
 fi
 
 # output

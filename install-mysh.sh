@@ -8,11 +8,12 @@
 ##  an installation is only necessary when new scripts have been added, and/or script names have changed, etc
 ## PARAMETERS
 ##  1) instdir=${1}    # the desired installation directory
-BOLD=$(tput bold)      # get the bold text enviornment
-UNDERLINE=$(tput smul) # get the underline text environment
-RESET=$(tput sgr0)     # don't forget to reset afterwards!
+PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
+BOLD=$(tput bold)       # get the bold text environment        (default values)
+UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
+RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "Usage${BOLD}${1}${RESET}: `basename ${0}` [-u for usage] <${UNDERLINE}instdir${RESET}|default>"; exit 1; }
+myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] <${UNDERLINE}instdir${RESET}|default>"; exit 1; }
 instdir=${1}    # the desired installation directory (including the full path to it)
 mysh=$MYSH    # this must be set to the path of this repository
 

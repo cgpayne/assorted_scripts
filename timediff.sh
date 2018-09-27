@@ -17,11 +17,12 @@
 ## PARAMETERS
 ##  1) timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 ##  2) timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
-BOLD=$(tput bold)      # get the bold text enviornment
-UNDERLINE=$(tput smul) # get the underline text environment
-RESET=$(tput sgr0)     # don't forget to reset afterwards!
+PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
+BOLD=$(tput bold)       # get the bold text environment        (default values)
+UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
+RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "Usage${BOLD}${1}${RESET}: `basename ${0}` [-u for usage] [-h for help] [-s for seconds also] [-S for seconds only] <DDD:HH:MM:SS> <DDD:HH:MM:SS>"; exit 1; }
+myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] [-h for help] [-s for seconds also] [-S for seconds only] <DDD:HH:MM:SS> <DDD:HH:MM:SS>"; exit 1; }
 timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
 mysh=$MYSH    # this must point to where this current script lives

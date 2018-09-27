@@ -17,11 +17,12 @@
 ##  2) secondparam=${2}    # <insert description, this is used below>
 ## STAGES
 ##  stage 0 = <insert description>
-BOLD=$(tput bold)      # get the bold text enviornment
-UNDERLINE=$(tput smul) # get the underline text environment
-RESET=$(tput sgr0)     # don't forget to reset afterwards!
+PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
+BOLD=$(tput bold)       # get the bold text environment        (default values)
+UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
+RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "Usage${BOLD}${1}${RESET}: `basename ${0}` [-u for usage] [-h for help] [-e <on|off>] <${UNDERLINE}firstparam${RESET}> <${UNDERLINE}secondparam${RESET}>"; exit 1; }
+myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] [-h for help] [-e <on|${BOLD}off${RESET}>] <${UNDERLINE}firstparam${RESET}> <${UNDERLINE}secondparam${RESET}>"; exit 1; }
 somevalue='<insert>'    # <insert description, this is used below>
 mydir=$MYDIR            # <insert description, this is used below>
 eval1='on'
@@ -48,7 +49,7 @@ then
   erro 'ERROR 0: god is empty, just like me...'
   exit 1
 fi
-somearg='<insert>' # <insert description like: this gets turned on by option -e>
+somearg=$eval2 # <insert description like: default value for -e, or: this gets turned on by option -e>
 while getopts ":uhe:" myopt # filter the script options
 do
   case "${myopt}" in

@@ -16,11 +16,12 @@
 ## PARAMETERS
 ##  1) scriptname=${1}    # the name of the script to be templated upon - don't forget the .sh extension
 ##  2) copyyear=${2}      # (most likely) the current year (for the copyright)
-BOLD=$(tput bold)      # get the bold text enviornment
-UNDERLINE=$(tput smul) # get the underline text environment
-RESET=$(tput sgr0)     # don't forget to reset afterwards!
+PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
+BOLD=$(tput bold)       # get the bold text environment        (default values)
+UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
+RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "Usage${BOLD}${1}${RESET}: `basename ${0}` [-u for usage] [-h for help] [-l <1|2|3>] <${UNDERLINE}scriptname${RESET}> <${UNDERLINE}copyyear${RESET}>"; exit 1; }
+myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] [-h for help] [-l <1|2|3>] <${UNDERLINE}scriptname${RESET}> <${UNDERLINE}copyyear${RESET}>"; exit 1; }
 mysh=$MYSH    # this must point to where this current script lives, along with the scriptinit_*.txt files
 myname='Charlie Payne'     # this is my name, le derp!
 thescript='<thescript>'    # we'll replace this string (in scriptinit_*.sh) with $scriptname (in $scriptname)

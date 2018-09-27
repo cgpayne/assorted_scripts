@@ -136,7 +136,7 @@ fi
 # pre-check
 if [ $Sswitch != $szero ] && [ $Sswitch != $sone ] && [ $Sswitch != $stwo ]
 then
-  erro 'ERROR 1207: Sswitch is out of bounds!?'
+  erro 'ERROR 1207: Sswitch is out of bounds!'
   erro "Sswitch = $Sswitch"
   erro 'exiting...'
   exit 1

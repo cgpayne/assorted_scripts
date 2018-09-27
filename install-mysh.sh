@@ -13,13 +13,13 @@ BOLD=$(tput bold)       # get the bold text environment        (default values)
 UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
 RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] <${UNDERLINE}instdir${RESET}|default>"; exit 1; }
+myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] <${UNDERLINE}instdir${RESET}|${BOLD}stdbin${RESET}>"; exit 1; }
 instdir=${1}    # the desired installation directory (including the full path to it)
 mysh=$MYSH    # this must be set to the path of this repository
 
 
 # parse the input / pre-check
-if [ -z ${1} ] || [ $instdir = 'default' ]
+if [ -z ${1} ] || [ $instdir = 'stdbin' ]
 then
   instdir="$HOME/bin"
 elif [ ${1} = '-u' ]
@@ -41,7 +41,7 @@ then
 fi
 if [ ${instdir:0:1} = '.' ] || [ ${instdir:0:2} = '..' ]
 then
-  erro 'ERROR 4501: please enter an expanded form of the path, sorry!'
+  erro 'ERROR 4501: please enter an expanded form of the path, sorry mang!'
   erro "instdir = $instdir"
   erro 'exiting...'
   exit 1

@@ -14,14 +14,14 @@
 ##    '2' = 'intermediate' (DESCRIPTION, PARAMETERS + myUsage example, and some standard sections)
 ##    '3' = 'full' (DESCRIPTION, OPTIONS + myUsage example, PARAMETERS, pre-parsing example, and standard sections)
 ## PARAMETERS
-##  1) scriptname=${1}    # the name of the script to be templated upon - don't forget the .sh extension
+##  1) scriptname=${1}    # the name of the script to be templated upon - don't forget the .sh extension!
 ##  2) copyyear=${2}      # (most likely) the current year (for the copyright)
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
 BOLD=$(tput bold)       # get the bold text environment        (default values)
 UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
 RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] [-h for help] [-l <1|2|3>] <${UNDERLINE}scriptname${RESET}> <${UNDERLINE}copyyear${RESET}>"; exit 1; }
+myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] [-h for help] [-l <${BOLD}1${RESET}|2|3>] <${UNDERLINE}scriptname${RESET}> <${UNDERLINE}copyyear${RESET}>"; exit 1; }
 mysh=$MYSH    # this must point to where this current script lives, along with the scriptinit_*.txt files
 myname='Charlie Payne'     # this is my name, le derp!
 thescript='<thescript>'    # we'll replace this string (in scriptinit_*.sh) with $scriptname (in $scriptname)
@@ -39,6 +39,7 @@ then
   erro 'ERROR 0: god is empty, just like me...'
   exit 1
 fi
+shlevel=$lev1 # default value for -l
 while getopts ":uhl:" myopt # filter the script options
 do
   case "${myopt}" in
@@ -71,8 +72,31 @@ copyyear=${2}      # (most likely) the current year (for the copyright)
 # pre-check
 if [[ ! $copyyear =~ ^[0-9]+$ ]] || [ $copyyear -eq 0 ]
 then
-  erro 'ERROR 1111: copyyear is not a positive integer!?'
+  erro 'ERROR 1111: copyyear is not a positive integer!'
   erro "copyyear = $copyyear"
+  erro 'exiting...'
+  exit 1
+fi
+if [ -s $scriptname ]
+then
+  erro "ERROR 6001: $scriptname is already a script!"
+  erro 'exiting...'
+  exit 1
+fi
+scriptext=${scriptname##*.}
+if [ $scriptext = $scriptname ]
+then
+  erro "ERROR 4050: it appears you've forgot to include the file extension!"
+  erro "scriptname = $scriptname"
+  erro "scriptext  = $scriptext"
+  erro 'exiting...'
+  exit 1
+fi
+if [ $scriptext != 'sh' ]
+then
+  erro "ERROR 0811: hey now, we're only programming in bash here!"
+  erro "scriptname = $scriptname"
+  erro "scriptext  = $scriptext"
   erro 'exiting...'
   exit 1
 fi

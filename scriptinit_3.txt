@@ -18,11 +18,12 @@
 ## STAGES
 ##  stage 0 = <insert description>
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
+RED=$(tput setaf 1)     # get the red [1] text environment     (usage error)
 BOLD=$(tput bold)       # get the bold text environment        (default values)
 UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
 RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] [-h for help] [-e <on|${BOLD}off${RESET}>] <${UNDERLINE}firstparam${RESET}> <${UNDERLINE}secondparam${RESET}>"; exit 1; }
+myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [-u for usage] [-h for help] [-e <on|${BOLD}off${RESET}>] <${UNDERLINE}firstparam${RESET}> <${UNDERLINE}secondparam${RESET}>"; exit 1; }
 somevalue='<insert>'    # <insert description, this is used below>
 mydir=$MYDIR            # <insert description, this is used below>
 eval1='on'
@@ -63,17 +64,17 @@ do
       somearg=${OPTARG}
       if [ $somearg != $eval1 ] && [ $somearg != $eval2 ]
       then
-        myUsage ' (option -e is out of bounds)'
+        myUsage 'option -e is out of bounds'
       fi
       ;;
     \?)
-      myUsage " (option -${OPTARG} not recognized)";;
+      myUsage "option -${OPTARG} not recognized";;
   esac
 done
 shift $(($OPTIND-1))
 if [ ${#} -ne 2 ] # check that the right number of script paramters have been filled
 then
-  myUsage ' (incorrect number of script parameters)'
+  myUsage 'incorrect number of script parameters'
 fi
 firstparam=${1}     # <insert description, this is used below>
 secondparam=${2}    # <insert description, this is used below>

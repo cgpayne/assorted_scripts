@@ -9,11 +9,12 @@
 ## PARAMETERS
 ##  1) instdir=${1}    # the desired installation directory
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
+RED=$(tput setaf 1)     # get the red [1] text environment     (usage error)
 BOLD=$(tput bold)       # get the bold text environment        (default values)
 UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
 RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] <${UNDERLINE}instdir${RESET}|${BOLD}stdbin${RESET}>"; exit 1; }
+myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [-u for usage] <${UNDERLINE}instdir${RESET}|${BOLD}stdbin${RESET}>"; exit 1; }
 instdir=${1}    # the desired installation directory (including the full path to it)
 mysh=$MYSH    # this must be set to the path of this repository
 
@@ -27,10 +28,10 @@ then
   myUsage
 elif [ ${1:0:1} = '-' ]
 then
-  myUsage " (option -${1:1} not recognized)"
+  myUsage "option -${1:1} not recognized"
 elif [ ${#} -ge 2 ] # check that the right number of script paramters have been filled
 then
-  myUsage ' (incorrect number of script parameters)'
+  myUsage 'incorrect number of script parameters'
 fi
 if [ ! -d $instdir ]
 then

@@ -10,11 +10,12 @@
 ##  1) firstparam=${1}     # <insert description, this is used below>
 ##  2) secondparam=${2}    # <insert description, this is used below>
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
+RED=$(tput setaf 1)     # get the red [1] text environment     (usage error)
 BOLD=$(tput bold)       # get the bold text environment        (default values)
 UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
 RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] <${UNDERLINE}firstparam${RESET}> <${UNDERLINE}secondparam${RESET}>"; exit 1; }
+myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [-u for usage] <${UNDERLINE}firstparam${RESET}> <${UNDERLINE}secondparam${RESET}>"; exit 1; }
 firstparam=${1}     # <insert description, this is used below>
 secondparam=${2}    # <insert description, this is used below>
 somevalue='<insert>'    # <insert description, this is used below>
@@ -44,10 +45,10 @@ then
   myUsage
 elif [ ${1:0:1} = '-' ]
 then
-  myUsage " (option -${1:1} not recognized)"
+  myUsage "option -${1:1} not recognized"
 elif [ ${#} -ne 2 ] # check that the right number of script paramters have been filled
 then
-  myUsage ' (incorrect number of script parameters)'
+  myUsage 'incorrect number of script parameters'
 fi
 if [ $firstparam != $somevalue ]
 then

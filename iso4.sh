@@ -29,7 +29,7 @@ then
   myUsage
 elif [ ${1:0:1} = '-' ]
 then
-  myUsage " (option -${1:1} not recognized)"
+  myUsage "option -${1:1} not recognized"
 elif [ ${#} -ne 1 ] # check that the right number of script paramters have been filled
 then
   myUsage 'incorrect number of script parameters'

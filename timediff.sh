@@ -18,11 +18,12 @@
 ##  1) timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 ##  2) timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
+RED=$(tput setaf 1)     # get the red [1] text environment     (usage error)
 BOLD=$(tput bold)       # get the bold text environment        (default values)
 UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
 RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "${PURPLE}Usage${1}:${RESET} `basename ${0}` [-u for usage] [-h for help] [-s for seconds also] [-S for seconds only] <DDD:HH:MM:SS> <DDD:HH:MM:SS>"; exit 1; }
+myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [-u for usage] [-h for help] [-s for seconds also] [-S for seconds only] <DDD:HH:MM:SS> <DDD:HH:MM:SS>"; exit 1; }
 timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
 mysh=$MYSH    # this must point to where this current script lives
@@ -85,13 +86,13 @@ do
     S) # -S for "seconds only": output the difference in total seconds only
       Sswitch=$stwo;;
     \?)
-      myUsage " (option -${OPTARG} not recognized)";;
+      myUsage "option -${OPTARG} not recognized";;
   esac
 done
 shift $(($OPTIND-1))
 if [ ${#} -ne 2 ] # check that the right number of script paramters have been filled
 then
-  myUsage ' (incorrect number of script parameters)'
+  myUsage 'incorrect number of script parameters'
 fi
 timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
@@ -100,7 +101,7 @@ timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
 # parse the input
 if [[ $timeI != ???:??:??:?? ]] || [[ $timeF != ???:??:??:?? ]]
 then
-  myUsage ' (incorrect format of script parameters)'
+  myUsage 'incorrect format of script parameters'
 fi
 DDDI=${timeI%%:*} # this gets DDD
 HHI=${timeI#*:} # this gets HH:MM:SS

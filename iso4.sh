@@ -5,10 +5,12 @@
 ##  License: see LICENSE (GNU GPL v3)
 ## DESCRIPTION
 ##  this will take in a word and output its ISO 4 shortened version
-##  I will add in more ISO 4 words as I need them (i.e., this is an incomplete dictionary)
-##  if the word is not found in the dictionary, then the script will just output the input
+##  I will add in more ISO 4 words as I need them (i.e., this is an incomplete ---- dictionary ----)
+##  if the word is not found in the ---- dictionary ----, then two options can follow:
+##    either, the word is in the so-called ---- exceptions dictionary ---- then we simply output the input
+##    or, we output the input with a "missing" tag
 ## PARAMETERS
-##  1) theword=${1}     # a single word
+##  1) theword=${1}    # a single word
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
 RED=$(tput setaf 1)     # get the red [1] text environment     (usage error)
 BOLD=$(tput bold)       # get the bold text environment        (default values)
@@ -16,7 +18,10 @@ UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
 RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
 myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [-u for usage] <${UNDERLINE}theword${RESET}>"; exit 1; }
-theword=${1}     # a single word
+theword=${1}    # a single word
+misstag='<-MISSING'    # the tag for a missing word
+stdon='on'
+stdoff='off'
 
 
 # parse the input / pre-check
@@ -34,15 +39,18 @@ elif [ ${#} -ne 1 ] # check that the right number of script paramters have been 
 then
   myUsage 'incorrect number of script parameters'
 fi
+colon=$stdoff
+missing=$stdoff
+last=$(echo -n $theword | tail -c 1)
+if [ $last = ':' ]
+then
+  theword=${theword%':'} # trim the trailing colon ;)
+  colon=$stdon
+fi
 
 
 # ---- dictionary ----
-# Data
-# Energy
-# High
-# Pure
-# Tables
-if [ $theword = 'the' ] || [ $theword = 'The' ] || [ $theword = 'on' ] || [ $theword = 'in' ] || [ $theword = 'and' ] || [ $theword = 'of' ]
+if [ $theword = 'The' ] || [ $theword = 'the' ] || [ $theword = 'on' ] || [ $theword = 'in' ] || [ $theword = 'and' ] || [ $theword = 'of' ]
 then
   theword=''
 elif [ $theword = 'Advances' ]
@@ -132,6 +140,30 @@ then
 elif [ $theword = 'Theoretical' ]
 then
   theword='Theor.'
+else
+  missing=$stdon
+fi
+
+# ---- exceptions dictionary ----
+if [ $missing = $stdon ] # don't remove this, trust me...
+then
+  if [ $theword = 'Data' ] || [ $theword = 'Energy' ] || [ $theword = 'High' ] || [ $theword = 'Pure' ] || [ $theword = 'Tables' ]
+  then
+    missing=$stdoff
+  fi
+fi
+
+
+# add the missing tag, if applicable
+if [ $missing = $stdon ]
+then
+  theword="($theword)$misstag"
+fi
+
+# reappend the colon, if applicable
+if [ $theword ] && [ $colon = $stdon ]
+then
+  theword="${theword}:"
 fi
 
 # output

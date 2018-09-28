@@ -19,6 +19,8 @@ myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [
 firstparam=${1}     # <insert description, this is used below>
 secondparam=${2}    # <insert description, this is used below>
 somevalue='<insert>'    # <insert description, this is used below>
+stdon='on'
+stdoff='off'
 
 
 

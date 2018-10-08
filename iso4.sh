@@ -39,6 +39,12 @@ elif [ ${#} -ne 1 ] # check that the right number of script paramters have been 
 then
   myUsage 'incorrect number of script parameters'
 fi
+if [ $theword = ':' ]
+then
+  erro 'ERROR 4101: you have space(s) before a colon!'
+  echo '(_):'
+  exit 1
+fi
 colon=$stdoff
 missing=$stdoff
 last=$(echo -n $theword | tail -c 1)
@@ -48,6 +54,16 @@ then
   colon=$stdon
 fi
 
+
+# ---- letters ----
+if [ $theword = 'A' ] || [ $theword = 'B' ] || [ $theword = 'C' ] || [ $theword = 'D' ] || [ $theword = 'E' ] || [ $theword = 'F' ] || [ $theword = 'G' ] \
+  || [ $theword = 'H' ] || [ $theword = 'I' ] || [ $theword = 'J' ] || [ $theword = 'K' ] || [ $theword = 'L' ] || [ $theword = 'M' ] || [ $theword = 'N' ] \
+  || [ $theword = 'O' ] || [ $theword = 'P' ] || [ $theword = 'Q' ] || [ $theword = 'R' ] || [ $theword = 'S' ] || [ $theword = 'T' ] || [ $theword = 'U' ] \
+  || [ $theword = 'V' ] || [ $theword = 'W' ] || [ $theword = 'X' ] || [ $theword = 'Y' ] || [ $theword = 'Z' ]
+then
+  echo $theword
+  exit 1
+fi
 
 # ---- dictionary ----
 if [ $theword = 'The' ] || [ $theword = 'the' ] || [ $theword = 'on' ] || [ $theword = 'in' ] || [ $theword = 'and' ] || [ $theword = 'of' ]
@@ -98,6 +114,9 @@ then
 elif [ $theword = 'Modern' ]
 then
   theword='Mod.'
+elif [ $theword = 'Nature' ]
+then
+  theword='Nat.'
 elif [ $theword = 'Nuclear' ]
 then
   theword='Nuc.'

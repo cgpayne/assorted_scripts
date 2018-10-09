@@ -20,11 +20,12 @@
 ##  2) timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
 RED=$(tput setaf 1)     # get the red [1] text environment     (usage error)
+GREEN=$(tput setaf 2)   # get the green [2] text environment   (datatype identifier)
 BOLD=$(tput bold)       # get the bold text environment        (default values)
 UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
 RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [-u for usage] [-h for help] [-s for seconds also] [-S for seconds only] <DDD:HH:MM:SS> <DDD:HH:MM:SS>"; exit 1; }
+myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [-u for usage] [-h for help] [-s for seconds also] [-S for seconds only] <${GREEN}DDD${RESET}:${GREEN}HH${RESET}:${GREEN}MM${RESET}:${GREEN}SS${RESET}> <${GREEN}DDD${RESET}:${GREEN}HH${RESET}:${GREEN}MM${RESET}:${GREEN}SS${RESET}>"; exit 1; }
 timeI=${1}    # the initial (I) time, in the format DDD:HH:MM:SS
 timeF=${2}    # the final (F) time, in the format DDD:HH:MM:SS
 mysh=$MYSH    # this must point to where this current script lives

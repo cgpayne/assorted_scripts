@@ -15,6 +15,7 @@
 ##  1) theword=${1}    # a single word
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
 RED=$(tput setaf 1)     # get the red [1] text environment     (usage error)
+GREEN=$(tput setaf 2)   # get the green [2] text environment   (datatype identifier)
 BOLD=$(tput bold)       # get the bold text environment        (default values)
 UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
 RESET=$(tput sgr0)      # don't forget to reset afterwards!

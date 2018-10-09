@@ -6,9 +6,9 @@
 ## DESCRIPTION
 ##  <insert description...>
 ##  <...insert more description>
-## KNOWN BUGS
-##  -- <insert bug description>
-##  -- <insert bug description>
+## KNOWN BUGS / DESIRED FEATURES
+##  -- <insert description>
+##  -- <insert description>
 ## OPTIONS
 ##  -u for "usage": see script usage
 ##  -h for "help": less the relevant documentation and see script usage

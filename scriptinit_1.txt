@@ -6,9 +6,9 @@
 ## DESCRIPTION
 ##  <insert description...>
 ##  <...insert more description>
-## KNOWN BUGS
-##  -- <insert bug description>
-##  -- <insert bug description>
+## KNOWN BUGS / DESIRED FEATURES
+##  -- <insert description>
+##  -- <insert description>
 ## PARAMETERS
 ##  1) firstparam=${1}     # <insert description, this is used below>
 ##  2) secondparam=${2}    # <insert description, this is used below>

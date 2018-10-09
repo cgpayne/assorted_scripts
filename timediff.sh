@@ -8,7 +8,7 @@
 ##  to get the current time in the format DDD:HH:MM:SS one can execute: date +%j:%H:%M:%S (my alias is `rawdate`)
 ##  in pseudo-formula: HH:MM:SS = abs(DDDF:HHF:MMF:SSF - DDDI:HHI:MMI:SSI)
 ##  it has the restrictions: 001 <= DDD <= 366, 00 <= HH =< 23, 00 <= MM <= 59, 00 <= SS <= 59
-## KNOWN BUGS
+## KNOWN BUGS / DESIRED FEATURES
 ##  -- it will break for calculating differences that cross over New Year's...
 ## OPTIONS
 ##  -u for "usage": see script usage

@@ -6,8 +6,8 @@
 ## DESCRIPTION
 ##  this script will initialize a template for a script
 ##  I love Godelian loops!
-## KNOWN BUGS
-##  [clear]
+## KNOWN BUGS / DESIRED FEATURES
+##  -- must fix the containment problem, i.e. make this script contain the *.txt files we copy from
 ## OPTIONS
 ##  -u for "usage": see script usage
 ##  -h for "help": less the relevant documentation and see script usage

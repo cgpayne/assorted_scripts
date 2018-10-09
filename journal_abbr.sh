@@ -6,7 +6,7 @@
 ## DESCRIPTION
 ##  this will take a journal name and output it in its ISO 4 shortened version
 ##  it makes use of iso4.sh, so make sure that sucker is up to date
-## KNOWN BUGS
+## KNOWN BUGS / DESIRED FEATURES
 ##  [clear]
 ## PARAMETERS
 ##  1) journal=${1}    # the journal name

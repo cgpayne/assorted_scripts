@@ -9,8 +9,9 @@
 ##    ...or:             'First M. Last' (FML) -> 'Last, F. M.' (LFM)
 ##  NOTE: you can provide either the expanded first name(s) or initial(s), both will work...
 ##        ...and we will space out initials such that 'F.M.' -> 'F. M.'
-## KNOWN BUGS
+## KNOWN BUGS / DESIRED FEATURES
 ##  -- not sure how to handle people with numbers in their names, like I, II, III, ...
+##  -- would be nice to eliminate the need for the -m option and have the script identify the order automatically (P ?= NP)
 ## OPTIONS
 ##  -u for "usage": see script usage
 ##  -h for "help": less the relevant documentation and see script usage
@@ -80,7 +81,7 @@ do
     u) # -u for "usage": see script usage
       myUsage;;
     h) # -h for "help": less the relevant documentation and see script usage
-      sed -n '2,21p; 22q' $mysh/namemanip.sh | command less
+      sed -n '2,22p; 23q' $mysh/namemanip.sh | command less
       myUsage
       ;;
     m) # -m <phys|ow> for "mode": this sets the direction of the name switch

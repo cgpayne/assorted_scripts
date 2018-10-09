@@ -10,7 +10,7 @@
 ##  -u for "usage": see script usage
 ##  -h for "help": less the relevant documentation and see script usage
 ##  -l <1|2|3> for "level": sets the template level, where
-##    '1' = 'basic' (only DESCRIPTION and PARAMETERS + myUsage example)
+##    '1' = 'basic' (only DESCRIPTION and PARAMETERS + myUsage example) [default]
 ##    '2' = 'intermediate' (DESCRIPTION, PARAMETERS + myUsage example, and some standard sections)
 ##    '3' = 'full' (DESCRIPTION, OPTIONS + myUsage example, PARAMETERS, pre-parsing example, and standard sections)
 ## PARAMETERS

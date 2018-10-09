@@ -11,7 +11,7 @@
 ##  -h for "help": less the relevant documentation and see script usage
 ##  -e <on|off> for "example": <insert description>, where
 ##    'on' = <insert description, this is used below>
-##    'off' = <insert description, this is used below>
+##    'off' = <insert description, this is used below> [default]
 ## PARAMETERS
 ##  1) firstparam=${1}     # <insert description, this is used below>
 ##  2) secondparam=${2}    # <insert description, this is used below>
@@ -25,9 +25,9 @@ RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
 myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [-u for usage] [-h for help] [-e <on|${BOLD}off${RESET}>] <${UNDERLINE}firstparam${RESET}> <${UNDERLINE}secondparam${RESET}>"; exit 1; }
 somevalue='<insert>'    # <insert description, this is used below>
-mydir=$MYDIR            # <insert description, this is used below>
-eval1='on'
-eval2='off'
+mysh=$MYSH    # this must point to where this current script lives
+stdon='on'
+stdoff='off'
 
 
 
@@ -50,19 +50,19 @@ then
   erro 'ERROR 0: god is empty, just like me...'
   exit 1
 fi
-somearg=$eval2 # <insert description like: default value for -e, or: this gets turned on by option -e>
+somearg=$stdoff # <insert description like: default value for -e, or: this gets turned on by option -e>
 while getopts ":uhe:" myopt # filter the script options
 do
   case "${myopt}" in
     u) # -u for "usage": see script usage
       myUsage;;
     h) # -h for "help": less the relevant documentation and see script usage
-      sed -n '2,19p; 20q' $mydir/<thescript> | command less
+      sed -n '2,19p; 20q' $mysh/<thescript> | command less
       myUsage
       ;;
     e) # -e <on|off> for "example": <insert description>
       somearg=${OPTARG}
-      if [ $somearg != $eval1 ] && [ $somearg != $eval2 ]
+      if [ $somearg != $stdon ] && [ $somearg != $stdoff ]
       then
         myUsage 'option -e is out of bounds'
       fi

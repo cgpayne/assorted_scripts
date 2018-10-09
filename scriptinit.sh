@@ -6,6 +6,8 @@
 ## DESCRIPTION
 ##  this script will initialize a template for a script
 ##  I love Godelian loops!
+## KNOWN BUGS
+##  [clear]
 ## OPTIONS
 ##  -u for "usage": see script usage
 ##  -h for "help": less the relevant documentation and see script usage
@@ -47,7 +49,7 @@ do
     u) # -u for "usage": see script usage
       myUsage;;
     h) # -h for "help": less the relevant documentation and see script usage
-      sed -n '2,18p; 19q' $mysh/scriptinit.sh | command less
+      sed -n '2,20p; 21q' $mysh/scriptinit.sh | command less
       myUsage
       ;;
     l) # -l <1|2|3> for "level": sets the template level

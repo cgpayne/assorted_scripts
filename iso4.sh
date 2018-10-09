@@ -9,6 +9,8 @@
 ##  if the word is not found in the ---- dictionary ----, then two options can follow:
 ##    either, the word is in the so-called ---- exceptions dictionary ---- then we simply output the input
 ##    or, we output the input with a "missing" tag
+## KNOWN BUGS
+##  [clear]
 ## PARAMETERS
 ##  1) theword=${1}    # a single word
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)

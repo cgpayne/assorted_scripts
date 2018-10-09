@@ -8,7 +8,8 @@
 ##  to get the current time in the format DDD:HH:MM:SS one can execute: date +%j:%H:%M:%S (my alias is `rawdate`)
 ##  in pseudo-formula: HH:MM:SS = abs(DDDF:HHF:MMF:SSF - DDDI:HHI:MMI:SSI)
 ##  it has the restrictions: 001 <= DDD <= 366, 00 <= HH =< 23, 00 <= MM <= 59, 00 <= SS <= 59
-##  NOTE: it will break for calculating differences that cross over New Year's...
+## KNOWN BUGS
+##  -- it will break for calculating differences that cross over New Year's...
 ## OPTIONS
 ##  -u for "usage": see script usage
 ##  -h for "help": less the relevant documentation and see script usage
@@ -78,7 +79,7 @@ do
     u) # -u for "usage": see script usage
       myUsage;;
     h) # -h for "help": less the relevant documentation and see script usage
-      sed -n '2,22p; 23q' $mysh/timediff.sh | command less
+      sed -n '2,20p; 21q' $mysh/timediff.sh | command less
       myUsage
       ;;
     s) # -s for "seconds also": output the difference in total seconds also

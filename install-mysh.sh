@@ -6,6 +6,8 @@
 ## DESCRIPTION
 ##  this will install all the shell scripts in this directory to $HOME/bin (by default) or the directory provided to ${1}
 ##  an installation is only necessary when new scripts have been added, and/or script names have changed, etc
+## KNOWN BUGS
+##  [clear]
 ## PARAMETERS
 ##  1) instdir=${1}    # the desired installation directory
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)

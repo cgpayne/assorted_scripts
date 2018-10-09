@@ -22,10 +22,10 @@ mysh=$MYSH    # this must be set to the path of this repository
 
 
 # parse the input / pre-check
-if [ -z ${1} ] || [ $instdir = 'stdbin' ]
+if [ -z "${1}" ] || [ $instdir = 'stdbin' ]
 then
   instdir="$HOME/bin"
-elif [ ${1} = '-u' ]
+elif [ "${1}" = '-u' ]
 then
   myUsage
 elif [ ${1:0:1} = '-' ]
@@ -51,7 +51,7 @@ then
 fi
 
 
-echo "installing MYSH to: $instdir..."
+echo "installing MYSH to: $instdir ..."
 echo
 for script in ${mysh}/*.sh
 do

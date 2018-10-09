@@ -27,11 +27,11 @@ stdoff='off'
 
 
 # parse the input / pre-check
-if [ -z ${1} ]
+if [ -z "${1}" ]
 then
   erro 'ERROR 0: god is empty, just like me...'
   exit 1
-elif [ ${1} = '-u' ]
+elif [ "${1}" = '-u' ]
 then
   myUsage
 elif [ ${1:0:1} = '-' ]

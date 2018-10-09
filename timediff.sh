@@ -67,7 +67,7 @@ rezero(){
 
 
 # pre-parse the script parameters
-if [ -z ${1} ]
+if [ -z "${1}" ]
 then
   erro 'ERROR 0: god is empty, just like me...'
   exit 1

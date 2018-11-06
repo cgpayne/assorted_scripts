@@ -42,12 +42,17 @@ fi
 NAME=($journal)
 NAMElength=${#NAME[*]}
 ISO=() # initialize empty array, will become the final output
-for ((i=0; i<NAMElength; i++))
-do
-  word=${NAME[${i}]}
-  shorty=$(iso4 $word)
-  ISO+=($shorty)
-done
+if [ $NAMElength -eq 1 ]
+then
+  ISO+=(${NAME[0]})
+else
+  for ((i=0; i<NAMElength; i++))
+  do
+    word=${NAME[${i}]}
+    shorty=$(iso4 $word)
+    ISO+=($shorty)
+  done
+fi
 echo ${ISO[*]}
 
 

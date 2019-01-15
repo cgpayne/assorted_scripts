@@ -7,17 +7,22 @@
 ##  this script will manipulate a name into the deisred form, which the user must specify a priori!
 ##    either (default):  'Last, First M.' (LFM) -> 'F. M. Last' (FML)
 ##    ...or:             'First M. Last' (FML) -> 'Last, F. M.' (LFM)
+##  it will also add in ~'s for latex formatting, if the -t option is set
+##  unfortunately, the desired output is highly dependent on properly formatted input; improperly formatted input can give whacky output
+##  likewise, the code's not necessarily invertable (definitely not if -t is used)
 ##  NOTE: you can provide either the expanded first name(s) or initial(s), both will work...
 ##        ...and we will space out initials such that 'F.M.' -> 'F. M.'
 ## KNOWN BUGS / DESIRED FEATURES
 ##  -- not sure how to handle people with numbers in their names, like I, II, III, ...
 ##  -- would be nice to eliminate the need for the -m option and have the script identify the order automatically (P ?= NP)
+##  -- make invertable for the -t option..?
 ## OPTIONS
 ##  -u for "usage": see script usage
 ##  -h for "help": less the relevant documentation and see script usage
 ##  -m <phys|ow> for "mode": this sets the direction of the name switch, where
 ##    'phys' = 'physics' (LFM -> FML) [default]
 ##    'ow'   = 'otherwise' (FML -> LFM)
+##  -t for "bibtex": add in ~'s for latex formatting
 ## PARAMETERS
 ##  1) thename=${1}     # someone's name, in either LFM or FML (depending on the chosen option/mode)
 PURPLE=$(tput setaf 5)  # get the purple [5] text environment  (usage base)
@@ -27,10 +32,12 @@ BOLD=$(tput bold)       # get the bold text environment        (default values)
 UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
 RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
-myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [-u for usage] [-h for help] [-m <${BOLD}phys${RESET}|ow>] \"${UNDERLINE}nameLFM${RESET}\""; exit 1; }
+myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [-u for usage] [-h for help] [-m <${BOLD}phys${RESET}|ow>] [-t for bibtex] \"${UNDERLINE}nameLFM${RESET}\""; exit 1; }
 physics='phys'    # this default option makes the switch:  LFM -> FML
 otherwise='ow'    # this option does the inverse switch:   FML -> LFM
 mysh=$MYSH    # this must point to where this current script lives
+stdon='on'
+stdoff='off'
 
 
 
@@ -53,7 +60,7 @@ shortener(){
 # function prototype: this makes sure there's spaces between initials, like 'F.M.' -> 'F. M.'
 splitter(){
   local somestring="$@"
-  echo `echo "$somestring" | sed 's/\./\. /g'`
+  echo `sed 's/\./\. /g' <<<"$somestring"`
 }
 
 # function prototype: makes initials out of multiple names
@@ -76,13 +83,14 @@ then
   exit 1
 fi
 themode=$physics # default value for -m
-while getopts ":uhm:" myopt # filter the script options
+bibtex=$stdoff # default value for -t
+while getopts ":uhm:t" myopt # filter the script options
 do
   case "${myopt}" in
     u) # -u for "usage": see script usage
       myUsage;;
     h) # -h for "help": less the relevant documentation and see script usage
-      sed -n '2,22p; 23q' $mysh/namemanip.sh | command less
+      sed -n '2,27p; 28q' $mysh/namemanip.sh | command less
       myUsage
       ;;
     m) # -m <phys|ow> for "mode": this sets the direction of the name switch
@@ -92,6 +100,8 @@ do
         myUsage 'option -m is out of bounds'
       fi
       ;;
+    t) # -t for "bibtex": add in ~'s for latex formatting
+      bibtex=$stdon;;
     \?)
       myUsage "option -${OPTARG} not recognized";;
   esac
@@ -115,7 +125,6 @@ then
   thename="$firstnames $lastname"
 fi
 
-
 # otherwise: FML -> LFM
 if [ $themode = $otherwise ]
 then
@@ -124,6 +133,12 @@ then
   firstnames=$(splitter "$firstnames")
   firstnames=$(initials "$firstnames")
   thename="${lastname}, $firstnames"
+fi
+
+# bibtex: add in the ~'s for latex formatting
+if [ $bibtex = $stdon ]
+then
+  thename="$(sed 's/\ /\~/g' <<<"$thename")"
 fi
 
 

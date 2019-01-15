@@ -7,6 +7,7 @@
 ##  this script will parse a BibTeX file (for instance, one from Zotero) into my preferred form
 ##  that is, in each bibtex entry we manipulate the author names, abbreviate the journal name, ...
 ##  ...and remove the following fields: issn, abstract, language, urldate, month, and file
+##  it requires journal_abbrv.sh and namemanip.sh to work proerly, so make sure both of those and iso4.sh are installed/updated
 ## KNOWN BUGS / DESIRED FEATURES
 ##  [clear]
 ## OPTIONS

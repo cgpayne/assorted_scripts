@@ -7,15 +7,12 @@
 ##  this script will parse a BibTeX file (for instance, one from Zotero) into my preferred form
 ##  that is, in each bibtex entry we manipulate the author names, abbreviate the journal name, ...
 ##  ...and remove the following fields: issn, abstract, language, urldate, month, and file
-##  it requires journal_abbrv.sh and namemanip.sh to work proerly, so make sure both of those and iso4.sh are installed/updated
+##  it requires journal_abbrv.sh and namemanip.sh (we will default to '-m phys -t') to work proerly, so make sure both of those and iso4.sh are installed/updated
 ## KNOWN BUGS / DESIRED FEATURES
 ##  [clear]
 ## OPTIONS
 ##  -u for "usage": see script usage
 ##  -h for "help": less the relevant documentation and see script usage
-##  -m <phys|ow> for "mode": see namemanip.sh, it's the same option, where
-##    'phys' = 'physics' (LFM -> FML) [default]
-##    'ow'   = 'otherwise' (FML -> LFM)
 ##  -e <number|4> for "et al": if number(authors) > number(e), then we shorten to number(e) authors and append 'et al.'
 ## PARAMETERS
 ##  1) bibfile=${1}    # the BibTeX file to be parsed
@@ -57,22 +54,24 @@ then
   erro 'ERROR 0: god is empty, just like me...'
   exit 1
 fi
-##### HERE ####
-somearg=$stdoff # <insert description like: default value for -e, or: this gets turned on by option -e>
-while getopts ":uhm:e:" myopt # filter the script options
+etalnum=4 # default value for -e
+while getopts ":uhe:" myopt # filter the script options
 do
   case "${myopt}" in
     u) # -u for "usage": see script usage
       myUsage;;
     h) # -h for "help": less the relevant documentation and see script usage
-      sed -n '2,23p; 24q' $mysh/zotbib.sh | command less
+      sed -n '2,21p; 22q' $mysh/zotbib.sh | command less
       myUsage
       ;;
-    e) # -e <on|off> for "example": <insert description>
-      somearg=${OPTARG}
-      if [ $somearg != $stdon ] && [ $somearg != $stdoff ]
+    e) # -e <number|4> for "et al": if number(authors) > number(e), then we shorten to number(e) authors and append 'et al.'
+      etalnum=${OPTARG}
+      if [[ ! $etalnum =~ ^[0-9]+$ ]] || [ $etalnum -eq 0 ]
       then
-        myUsage 'option -e is out of bounds'
+        erro 'ERROR 4060: etalnum is not a etalnum integer!'
+        erro "etalnum = $etalnum"
+        erro 'exiting...'
+        exit 1
       fi
       ;;
     \?)
@@ -80,11 +79,12 @@ do
   esac
 done
 shift $(($OPTIND-1))
-if [ ${#} -ne 2 ] # check that the right number of script paramters have been filled
+if [ ${#} -ne 1 ] # check that the right number of script paramters have been filled
 then
   myUsage 'incorrect number of script parameters'
 fi
 bibfile=${1}    # the BibTeX file to be parsed
+#### HERE ####
 
 
 # parse the input

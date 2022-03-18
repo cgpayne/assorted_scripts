@@ -28,6 +28,7 @@ UNDERLINE=$(tput smul)  # get the underline text environment   (variable names)
 RESET=$(tput sgr0)      # don't forget to reset afterwards!
 erro(){ echo "$@" 1>&2; }
 myUsage(){ erro "${PURPLE}Usage (${RED}${1}${PURPLE}):${RESET} `basename ${0}` [-u for usage] [-h for help] [-m <${BOLD}phys${RESET}|ow>] \"${UNDERLINE}nameLFM${RESET}\""; exit 1; }
+# thename defined below
 physics='phys'    # this default option makes the switch:  LFM -> FML
 otherwise='ow'    # this option does the inverse switch:   FML -> LFM
 mysh=$MYSH    # this must point to where this current script lives
